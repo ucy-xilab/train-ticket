@@ -40,4 +40,4 @@ kubectl get storageclass -A
 
 ## Deploy benchmark
 
-make deploy DeployArgs="--all"
+make deploy DeployArgs="--with-monitoring --with-tracing"
