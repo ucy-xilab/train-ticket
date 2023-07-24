@@ -73,8 +73,10 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ### kubectl replace -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml 
 
 ### Enable enable-aggregator-routing: 'true' in kube-apiserver to allow metric server to collect cpu load and memory
-sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml .
+'''
+sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml
 sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml
+'''
 
 ### Find section commands. Add the following
 - --enable-aggregator-routing=true
