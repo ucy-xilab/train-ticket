@@ -113,3 +113,6 @@ kubectl delete statefulset.apps --all -n default
 ### Find listening ports
 kubectl get svc --all-namespaces -o go-template='{{range .items}}{{range.spec.ports}}{{if .nodePort}}{{.name}}{{.nodePort}}{{"\n"}}{{end}}{{end}}{{end}}'
 kubectl get svc --all-namespaces
+
+### Update resources
+kubectl edit deploy ts-auth-service -o yaml -n default
