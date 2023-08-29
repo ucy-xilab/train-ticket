@@ -39,10 +39,6 @@ kubectl get pvc -A
 kubectl get storageclass -A
 
 ### Setting up taints
-
-kubectl taint nodes $kbnode2 statefullKey=statefullValue:NoExecute
-kubectl taint nodes $kbnode3 statefullKey=statefullValue:NoExecute
-kubectl taint nodes $kbnode4 statefullKey=statefullValue:NoExecute
 kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute
 kubectl taint nodes $kbnode6 highloadKey=highloadValue:NoExecute
 kubectl taint nodes $kbnode7 lowloadKey=lowloadValue:NoExecute
