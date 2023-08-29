@@ -9,8 +9,8 @@ sudo apt-get install helm
 
 ## Install openEBS PV (Required to support Persistent Volume Claims for stateful workloads)
 
-### Get the first node of the Kubernetes Cluster and save it to kbnode1 variable
-export kbnode1=`kubectl get nodes -A| grep kube1\\\. | awk '{print \$1}'`;echo $kbnode1
+### Get the node names of the Kubernetes Cluster and save it to kbnodei variable
+for i in {1..11}; do export kbnode$i=`kubectl get nodes -A| grep kube$i\\\. | awk '{print \$1}'`;export nodename=kbnode$i; echo ${!nodename}; done
 
 ### Install package repo
 helm repo add openebs-localpv https://openebs.github.io/dynamic-localpv-provisioner
@@ -40,16 +40,16 @@ kubectl get storageclass -A
 
 ### Setting up taints
 
-kubectl taint nodes kube2 statefullKey=statefullValue:NoExecute
-kubectl taint nodes kube3 statefullKey=statefullValue:NoExecute
-kubectl taint nodes kube4 statefullKey=statefullValue:NoExecute
-kubectl taint nodes kube5 highloadKey=highloadValue:NoExecute
-kubectl taint nodes kube6 highloadKey=highloadValue:NoExecute
-kubectl taint nodes kube7 lowloadKey=lowloadValue:NoExecute
-kubectl taint nodes kube8 lowloadKey=lowloadValue:NoExecute
-kubectl taint nodes kube9 lowloadKey=lowloadValue:NoExecute
-kubectl taint nodes kube10 lowloadKey=lowloadValue:NoExecute
-kubectl taint nodes kube11 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode2 statefullKey=statefullValue:NoExecute
+kubectl taint nodes $kbnode3 statefullKey=statefullValue:NoExecute
+kubectl taint nodes $kbnode4 statefullKey=statefullValue:NoExecute
+kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute
+kubectl taint nodes $kbnode6 highloadKey=highloadValue:NoExecute
+kubectl taint nodes $kbnode7 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode8 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode9 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode10 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode11 lowloadKey=lowloadValue:NoExecute
 
 ## Deploy benchmark
 
