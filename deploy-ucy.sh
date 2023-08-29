@@ -38,6 +38,19 @@ kubectl patch storageclass openebs-hostpath -p '{"metadata":{"annotations":{"sto
 kubectl get pvc -A
 kubectl get storageclass -A
 
+### Setting up taints
+
+kubectl taint nodes kube2 statefullKey=statefullValue:NoExecute
+kubectl taint nodes kube3 statefullKey=statefullValue:NoExecute
+kubectl taint nodes kube4 statefullKey=statefullValue:NoExecute
+kubectl taint nodes kube5 highloadKey=highloadValue:NoExecute
+kubectl taint nodes kube6 highloadKey=highloadValue:NoExecute
+kubectl taint nodes kube7 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes kube8 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes kube9 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes kube10 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes kube11 lowloadKey=lowloadValue:NoExecute
+
 ## Deploy benchmark
 
 make deploy
