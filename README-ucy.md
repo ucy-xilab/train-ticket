@@ -7,7 +7,7 @@ git clone --depth=1 https://github.com/ucy-xilab/train-ticket.git
 cd train-ticket
 
 ### Deploy benchmark
-sh deploy-ucy.sh
+bash deploy-ucy.sh
 
 ## Installation guidelines (what's included in the deploy-ucy.sh script)
 
@@ -20,8 +20,8 @@ sudo apt-get install helm
 
 ### Install openEBS PV (Required to support Persistent Volume Claims for stateful workloads)
 
-#### Get the first node of the Kubernetes Cluster and save it to kbnode1 variable
-export kbnode1=`kubectl get nodes -A| grep kube1\\\. | awk '{print \$1}'`;echo $kbnode1
+#### Get the node names of the Kubernetes Cluster and save it to kbnodei variable
+for i in {1..11}; do export kbnode$i=`kubectl get nodes -A| grep kube$i\\\. | awk '{print \$1}'`;export nodename=kbnode$i; echo ${!nodename}; done
 
 #### Install package repo
 helm repo add openebs-localpv https://openebs.github.io/dynamic-localpv-provisioner
@@ -47,12 +47,29 @@ kubectl patch storageclass openebs-hostpath -p '{"metadata":{"annotations":{"sto
 
 #### Confirm storageClasses and that at least one is set as (default)
 kubectl get pvc -A
+
 kubectl get storageclass -A
+
+### Setting up taints
+
+kubectl taint nodes $kbnode2 statefulKey=statefulValue:NoExecute
+kubectl taint nodes $kbnode3 statefulKey=statefulValue:NoExecute
+kubectl taint nodes $kbnode4 statefulKey=statefulValue:NoExecute
+kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute
+kubectl taint nodes $kbnode6 highloadKey=highloadValue:NoExecute
+kubectl taint nodes $kbnode7 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode8 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode9 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode10 lowloadKey=lowloadValue:NoExecute
+kubectl taint nodes $kbnode11 lowloadKey=lowloadValue:NoExecute
 
 ### Clone Train-Ticket repo
 mkdir trainticket
+
 cd trainticket
+
 git clone --depth=1 https://github.com/ucy-xilab/train-ticket.git
+
 cd train-ticket
 
 ### Deploy benchmark
@@ -68,15 +85,15 @@ make deploy DeployArgs="--with-monitoring --with-tracing"
 ## Install k9s for easy monitoring and managing pods
 
 ### Enable Metric server and CLI to view pods load
+
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ### kubectl delete -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ### kubectl replace -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml 
 
 ### Enable enable-aggregator-routing: 'true' in kube-apiserver to allow metric server to collect cpu load and memory
-'''
-sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml
+sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml .
+
 sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml
-'''
 
 ### Find section commands. Add the following
 - --enable-aggregator-routing=true
@@ -89,30 +106,81 @@ kubectl edit deploy -n kube-system metrics-server
 
 ### Confirm that metrics server is running
 kubectl get pod -n kube-system
+
 kubectl top nodes
 
 #### K9s - Kubernetes CLI To Manage Your Clusters In Style!
 curl -sS https://webinstall.dev/k9s | bash
+
 source ~/.config/envman/PATH.env
+
 k9s
 
 #### Press 2 to show the default namespace where train ticket pods are running
 
 ## Usefull commands
+
+### Get pods on specific node
+for i in {1..11}; do export kbnode$i=`kubectl get nodes -A| grep kube$i\\\. | awk '{print \$1}'`;export nodename=kbnode$i; echo ${!nodename}; done
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode1
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode2
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode3
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode4
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode5
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode6
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode7
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode8
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode9
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode10
+kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode11
+
+### Mysql cluster is not uninstalling correctly in case of reset. To do it manually execute the following
+helm uninstall tsdb -n default
+
+### Full cleanup
+kubectl delete pods,service,deployments --all -A -n default
+
 ### Check Pod details
 kubectl describe pod ts-auth-service-654d66695d-mjdp4 --namespace=default
 
+### Check Pod's full details. Useful to check the state and error when not booting
+kubectl get pod nacosdb-mysql-0 -n default --output=yaml
+
 ### Login to a pod
 kubectl exec --namespace=default --stdin --tty ts-auth-service-654d66695d-mjdp4 -- /bin/bash
+
 kubectl exec --namespace=default --stdin --tty ts-auth-service-654d66695d-mjdp4 -- /bin/bash
 
 ### Clean up
 kubectl delete replicasets,deployments,jobs,services,pods --all -n default
+
 kubectl delete statefulset.apps --all -n default
 
 ### Find listening ports
 kubectl get svc --all-namespaces -o go-template='{{range .items}}{{range.spec.ports}}{{if .nodePort}}{{.name}}{{.nodePort}}{{"\n"}}{{end}}{{end}}{{end}}'
+
 kubectl get svc --all-namespaces
 
 ### Update resources
 kubectl edit deploy ts-auth-service -o yaml -n default
+
+### Get services on all nodes
+kubectl get nodes
+
+kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=<node>
+
+## Other Taint examples
+### Add a taint to a node to prevent any pods to map to the node unless they match. The below example is for auth service assuming that is running on kube7 node
+kubectl taint nodes kube7 authserviceKey=authserviceValue:NoExecute
+
+kubectl edit deploy ts-auth-service -o yaml -n default
+#### Add the following code
+spec:
+   tolerations:
+   - key: "authserviceKey"
+     operator: "Equal"
+     value: "authserviceValue"
+     effect: "NoExecute"
+
+### To remove a taint and allow all pods to map
+kubectl taint nodes kube7 authserviceKey=authserviceValue:NoExecute-
