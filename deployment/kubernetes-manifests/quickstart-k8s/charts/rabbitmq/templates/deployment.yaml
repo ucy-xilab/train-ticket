@@ -13,6 +13,11 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      tolerations:
+      - key: "statefulKey"
+        operator: "Equal"
+        value: "statefulValue"
+        effect: "NoExecute"
       containers:
         - name: rabbitmq
           image: "{{ .Values.rabbitmq.image.repository }}:{{ .Values.rabbitmq.image.tag }}"
