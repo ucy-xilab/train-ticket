@@ -1,3 +1,4 @@
+#!/bin/bash
 # Train Ticket Setup guide
 
 ## Install Helm (Required to install openEBS PV)
@@ -39,6 +40,9 @@ kubectl get pvc -A
 kubectl get storageclass -A
 
 ### Setting up taints
+kubectl taint nodes $kbnode2 statefulKey=statefulValue:NoExecute
+kubectl taint nodes $kbnode3 statefulKey=statefulValue:NoExecute
+kubectl taint nodes $kbnode4 statefulKey=statefulValue:NoExecute
 kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute
 kubectl taint nodes $kbnode6 highloadKey=highloadValue:NoExecute
 kubectl taint nodes $kbnode7 lowloadKey=lowloadValue:NoExecute
@@ -46,6 +50,7 @@ kubectl taint nodes $kbnode8 lowloadKey=lowloadValue:NoExecute
 kubectl taint nodes $kbnode9 lowloadKey=lowloadValue:NoExecute
 kubectl taint nodes $kbnode10 lowloadKey=lowloadValue:NoExecute
 kubectl taint nodes $kbnode11 lowloadKey=lowloadValue:NoExecute
+
 
 ## Deploy benchmark
 
