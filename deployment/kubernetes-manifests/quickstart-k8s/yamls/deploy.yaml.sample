@@ -12,6 +12,11 @@ spec:
       labels:
         app: ts-admin-basic-info-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-admin-basic-info-service
           image: codewisdom/ts-admin-basic-info-service:1.0.0
@@ -54,6 +59,11 @@ spec:
       labels:
         app: ts-admin-order-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-admin-order-service
           image: codewisdom/ts-admin-order-service:1.0.1
@@ -96,6 +106,11 @@ spec:
       labels:
         app: ts-admin-route-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-admin-route-service
           image: codewisdom/ts-admin-route-service:1.0.0
@@ -138,6 +153,11 @@ spec:
       labels:
         app: ts-admin-travel-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-admin-travel-service
           image: codewisdom/ts-admin-travel-service:1.0.0
@@ -180,6 +200,11 @@ spec:
       labels:
         app: ts-admin-user-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-admin-user-service
           image: codewisdom/ts-admin-user-service:1.0.1
@@ -222,6 +247,11 @@ spec:
       labels:
         app: ts-assurance-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-assurance-service
           image: codewisdom/ts-assurance-service:1.0.0
@@ -266,6 +296,11 @@ spec:
       labels:
         app: ts-auth-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-auth-service
           image: codewisdom/ts-auth-service:1.0.0
@@ -310,6 +345,11 @@ spec:
       labels:
         app: ts-avatar-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-avatar-service
           image: codewisdom/ts-avatar-service:0.2.0
@@ -352,6 +392,11 @@ spec:
       labels:
         app: ts-basic-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-basic-service
           image: codewisdom/ts-basic-service:1.0.0
@@ -394,6 +439,11 @@ spec:
       labels:
         app: ts-cancel-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-cancel-service
           image: codewisdom/ts-cancel-service:1.0.0
@@ -436,6 +486,11 @@ spec:
       labels:
         app: ts-config-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-config-service
           image: codewisdom/ts-config-service:1.0.0
@@ -480,6 +535,11 @@ spec:
       labels:
         app: ts-consign-price-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-consign-price-service
           image: codewisdom/ts-consign-price-service:1.0.0
@@ -524,6 +584,11 @@ spec:
       labels:
         app: ts-consign-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-consign-service
           image: codewisdom/ts-consign-service:1.0.1
@@ -568,6 +633,11 @@ spec:
       labels:
         app: ts-contacts-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-contacts-service
           image: codewisdom/ts-contacts-service:1.0.0
@@ -612,6 +682,11 @@ spec:
       labels:
         app: ts-delivery-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-delivery-service
           image: codewisdom/ts-delivery-service:1.0.0
@@ -658,6 +733,11 @@ spec:
       labels:
         app: ts-execute-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-execute-service
           image: codewisdom/ts-execute-service:1.0.0
@@ -700,6 +780,11 @@ spec:
       labels:
         app: ts-food-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-food-service
           image: codewisdom/ts-food-service:1.0.0
@@ -746,6 +831,11 @@ spec:
       labels:
         app: ts-food-delivery-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-food-delivery-service
           image: codewisdom/ts-food-delivery-service:1.0.0
@@ -790,6 +880,11 @@ spec:
       labels:
         app: ts-gateway-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-gateway-service
           image: codewisdom/ts-gateway-service:1.0.0
@@ -832,6 +927,11 @@ spec:
       labels:
         app: ts-inside-payment-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-inside-payment-service
           image: codewisdom/ts-inside-payment-service:1.0.0
@@ -876,6 +976,11 @@ spec:
       labels:
         app: ts-news-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-news-service
           image: codewisdom/ts-news-service:1.0.0
@@ -918,6 +1023,11 @@ spec:
       labels:
         app: ts-notification-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-notification-service
           image: codewisdom/ts-notification-service:1.0.0
@@ -964,6 +1074,11 @@ spec:
       labels:
         app: ts-order-other-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-order-other-service
           image: codewisdom/ts-order-other-service:1.0.1
@@ -1010,6 +1125,11 @@ spec:
       labels:
         app: ts-order-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-order-service
           image: codewisdom/ts-order-service:1.0.1
@@ -1056,6 +1176,11 @@ spec:
       labels:
         app: ts-payment-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-payment-service
           image: codewisdom/ts-payment-service:1.0.0
@@ -1100,6 +1225,11 @@ spec:
       labels:
         app: ts-preserve-other-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-preserve-other-service
           image: codewisdom/ts-preserve-other-service:1.0.0
@@ -1144,6 +1274,11 @@ spec:
       labels:
         app: ts-preserve-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-preserve-service
           image: codewisdom/ts-preserve-service:1.0.0
@@ -1188,6 +1323,11 @@ spec:
       labels:
         app: ts-price-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-price-service
           image: codewisdom/ts-price-service:1.0.0
@@ -1232,6 +1372,11 @@ spec:
       labels:
         app: ts-rebook-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-rebook-service
           image: codewisdom/ts-rebook-service:1.0.1
@@ -1276,6 +1421,11 @@ spec:
       labels:
         app: ts-route-plan-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-route-plan-service
           image: codewisdom/ts-route-plan-service:1.0.0
@@ -1318,6 +1468,11 @@ spec:
       labels:
         app: ts-route-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-route-service
           image: codewisdom/ts-route-service:1.0.0
@@ -1362,6 +1517,11 @@ spec:
       labels:
         app: ts-seat-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-seat-service
           image: codewisdom/ts-seat-service:1.0.0
@@ -1404,6 +1564,11 @@ spec:
       labels:
         app: ts-security-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-security-service
           image: codewisdom/ts-security-service:1.0.0
@@ -1448,6 +1613,11 @@ spec:
       labels:
         app: ts-station-food-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-station-food-service
           image: codewisdom/ts-station-food-service:1.0.0
@@ -1492,6 +1662,11 @@ spec:
       labels:
         app: ts-station-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-station-service
           image: codewisdom/ts-station-service:1.0.1
@@ -1536,6 +1711,11 @@ spec:
       labels:
         app: ts-ticket-office-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-ticket-office-service
           image: codewisdom/ts-ticket-office-service:1.0.0
@@ -1580,6 +1760,11 @@ spec:
       labels:
         app: ts-train-food-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-train-food-service
           image: codewisdom/ts-train-food-service:1.0.0
@@ -1624,6 +1809,11 @@ spec:
       labels:
         app: ts-train-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-train-service
           image: codewisdom/ts-train-service:1.0.0
@@ -1668,6 +1858,11 @@ spec:
       labels:
         app: ts-travel-plan-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-travel-plan-service
           image: codewisdom/ts-travel-plan-service:1.0.0
@@ -1710,6 +1905,11 @@ spec:
       labels:
         app: ts-travel-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-travel-service
           image: codewisdom/ts-travel-service:1.0.0
@@ -1754,6 +1954,11 @@ spec:
       labels:
         app: ts-travel2-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-travel2-service
           image: codewisdom/ts-travel2-service:1.0.0
@@ -1798,6 +2003,11 @@ spec:
       labels:
         app: ts-user-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-user-service
           image: codewisdom/ts-user-service:1.0.1
@@ -1842,6 +2052,11 @@ spec:
       labels:
         app: ts-verification-code-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-verification-code-service
           image: codewisdom/ts-verification-code-service:1.0.0
@@ -1884,6 +2099,11 @@ spec:
       labels:
         app: ts-voucher-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-voucher-service
           image: codewisdom/ts-voucher-service:1.0.0
@@ -1928,6 +2148,11 @@ spec:
       labels:
         app: ts-wait-order-service
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-wait-order-service
           image: codewisdom/ts-wait-order-service:1.0.1
@@ -1972,6 +2197,11 @@ spec:
       labels:
         app: ts-ui-dashboard
     spec:
+      tolerations:
+      - key: "lowloadKey"
+        operator: "Equal"
+        value: "lowloadValue"
+        effect: "NoExecute"
       containers:
         - name: ts-ui-dashboard
           image: codewisdom/ts-ui-dashboard:1.0.1
