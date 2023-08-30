@@ -23,6 +23,11 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.nacos.secretName }}
+      tolerations:
+      - key: "statefulKey"
+        operator: "Equal"
+        value: "statefulValue"
+        effect: "NoExecute"
       containers:
         - name: k8snacos
           env:
