@@ -1,4 +1,16 @@
 # Train Ticket Setup guide
+## Introduction
+Only the commands in the "Deployment using git script" section need to be executed to deploy the benchmark. The rest are installation guidelines and useful commands to manage the pods and containers of the trainticket benchmark.
+
+Note that the benchmark is currently deployed on 11 nodes. 
+- Node1 ($kbnode1) is used as Master where only the kubernetes master is executing, the openEBS and other services needed to run kubernetes. Also the workload generator can be run on this node
+- Node2-4 ($kbnode2-$kbnode4) are used for the stateful services of trainticket. The nodes are tainted with statefulKey:statefulValue taint and the related services (nacos, mysql and rabbitmq) are set to use this toleration from the following deployment templates:
+  - Nacos: deployment/kubernetes-manifests/quickstart-k8s/charts/nacos/templates/statefulset.yaml
+  - Mysql: deployment/kubernetes-manifests/quickstart-k8s/charts/mysql/templates/statefulset.yaml
+  - Rabbitmq: deployment/kubernetes-manifests/quickstart-k8s/charts/rabbitmq/templates/deployment.yaml
+- Node5-6 ($kbnode5,$kbnode6) are reserved for high load services with taint highloadKey:highloadValue. Currently none of the services is set with toleration of highloadKey:highloadValue as this should be done after profiling and based on the workload that will be executed. This can be done either by editing the deployment/kubernetes-manifests/quickstart-k8s/yamls/deploy.yaml.sample file or dynamically using the instructions in section "Taint examples"
+- Node7-11 ($kbnode7-$kbnode11) are reserved for load load services with taint lowloadKey:lowloadValue. Currently all the services are set with toleration of lowloadKey:lowloadValue and should be changed to highloadKey:highloadValue after profiling and based on the workload that will be executed
+  
 ## Deployment using git script
 ### Clone Train-Ticket repo
 mkdir trainticket
@@ -169,7 +181,7 @@ kubectl get nodes
 
 kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=<node>
 
-## Other Taint examples
+## Taint examples
 ### Add a taint to a node to prevent any pods to map to the node unless they match. The below example is for auth service assuming that is running on kube7 node
 kubectl taint nodes kube7 authserviceKey=authserviceValue:NoExecute
 
