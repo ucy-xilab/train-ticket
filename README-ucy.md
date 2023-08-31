@@ -133,6 +133,7 @@ k9s
 ## Usefull commands
 
 ### Get pods on specific node
+```
 for i in {1..11}; do export kbnode$i=`kubectl get nodes -A| grep kube$i\\\. | awk '{print \$1}'`;export nodename=kbnode$i; echo ${!nodename}; done
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode1
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode2
@@ -145,10 +146,14 @@ kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode8
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode9
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode10
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode11
+```
 
 ### Reset installation
+```
 make reset-deploy
+helm uninstall tsdb -n default
 make deploy
+```
 
 ### Mysql cluster is not uninstalling correctly in case of reset. To do it manually execute the following
 helm uninstall tsdb -n default
