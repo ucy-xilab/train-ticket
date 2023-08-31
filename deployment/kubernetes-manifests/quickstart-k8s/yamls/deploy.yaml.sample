@@ -297,9 +297,9 @@ spec:
         app: ts-auth-service
     spec:
       tolerations:
-      - key: "lowloadKey"
+      - key: "highloadKey"
         operator: "Equal"
-        value: "lowloadValue"
+        value: "highloadValue"
         effect: "NoExecute"
       containers:
         - name: ts-auth-service
@@ -319,11 +319,11 @@ spec:
             - containerPort: 12340
           resources:
             requests:
-              cpu: 100m
-              memory: 300Mi
+              cpu: 1000m
+              memory: 3000Mi
             limits:
-              cpu: 500m
-              memory: 2000Mi
+              cpu: 5000m
+              memory: 20000Mi
           readinessProbe:
             tcpSocket:
               port: 12340
