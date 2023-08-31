@@ -146,10 +146,14 @@ kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode9
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode10
 kubectl get pods -n default -o wide --field-selector spec.nodeName=$kbnode11
 
+### Reset installation
+make reset-deploy
+make deploy
+
 ### Mysql cluster is not uninstalling correctly in case of reset. To do it manually execute the following
 helm uninstall tsdb -n default
 
-### Full cleanup
+### Delete all instances manually
 kubectl delete pods,service,deployments --all -A -n default
 
 ### Check Pod details
