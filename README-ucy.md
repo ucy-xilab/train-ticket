@@ -182,17 +182,17 @@ kubectl get nodes
 kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=<node>
 
 ## Taint examples
-### Add a taint to a node to prevent any pods to map to the node unless they match. The below example is for auth service assuming that is running on kube7 node
-kubectl taint nodes kube7 authserviceKey=authserviceValue:NoExecute
+### Add a taint to a node to prevent any pods to map to the node unless they match. The below example is for auth service assuming that is running on $kbnode5 node
+kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute
 
 kubectl edit deploy ts-auth-service -o yaml -n default
 #### Add the following code
 spec:
    tolerations:
-   - key: "authserviceKey"
+   - key: "highloadKey"
      operator: "Equal"
-     value: "authserviceValue"
+     value: "highloadValue"
      effect: "NoExecute"
 
 ### To remove a taint and allow all pods to map
-kubectl taint nodes kube7 authserviceKey=authserviceValue:NoExecute-
+kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute-
