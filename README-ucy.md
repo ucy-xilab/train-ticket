@@ -205,3 +205,6 @@ spec:
 
 ### To remove a taint and allow all pods to map
 kubectl taint nodes $kbnode5 highloadKey=highloadValue:NoExecute-
+
+## Workload Generator
+The instructions for deploying and running the workload generator are in a separate github repository(ts-locust-load-generator). 
